@@ -1,0 +1,24 @@
+[33mcommit 8dbe82e512faa49f8b226510708a2a62ecd0e125[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 593506f 2839c44
+Author: Mina Mamdouh <menamamdouh852456@gmail.com>
+Date:   Sun Aug 25 12:02:20 2024 +0300
+
+    Resolved merge conflicts
+
+[33mcommit 593506fa0e3306e8bfc962dee4a67561acd2b4ba[m
+Author: Mina Mamdouh <menamamdouh852456@gmail.com>
+Date:   Sun Aug 25 11:56:08 2024 +0300
+
+    install axios, tailwind, react query, signals and react router
+
+[33mcommit 2839c445646fad268504dcf0703940373988a0e8[m
+Author: Mina Mamdouh <menamamdouh852456@gmail.com>
+Date:   Sat Aug 24 12:37:03 2024 +0300
+
+    install axios and tailwindcss
+
+[33mcommit 8928088c2a607df527caf5e06026c48a9dce4c86[m
+Author: Mina Mamdouh <menamamdouh852456@gmail.com>
+Date:   Sat Aug 24 11:53:56 2024 +0300
+
+    Initial commit
