@@ -1,25 +1,25 @@
 import { useRef } from 'react';
 
 const Login = () => {
-  const userNameInput = useRef()
-  const passwordInput = useRef()
+  const formRef = useRef(null);
 
-  console.log('rerender');
-const submitHandler = (e)=>{
-e.preventDefault()
-console.log(userNameInput.current.value);
-console.log(passwordInput.current.value);
-userNameInput.current.value = "";
-passwordInput.current.value = "";
-
-}
+  const formHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    console.log(Object.fromEntries(formData));
+    formRef.current.reset();
+  };
   return (
-    <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
+    <div className='flex flex-col items-center justify-center min-w-96 mx-auto text-blue-200'>
       <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 '>
         <h1 className='text-3xl font-semibold text-center mb-4'>
           Login <span className='text-blue-400'>Chat App</span>
         </h1>
-        <form className='flex flex-col gap-y-3' onSubmit={submitHandler}>
+        <form
+          className='flex flex-col gap-y-3'
+          onSubmit={formHandler}
+          ref={formRef}
+        >
           <div className='grid grid-cols-1 gap-y-2'>
             <label htmlFor='userName' className='col-span-1 text-xl'>
               User Name
@@ -30,7 +30,6 @@ passwordInput.current.value = "";
               name='userName'
               placeholder='Enter User Name'
               className=' input input-bordered w-full col-span-1 focus:outline-none'
-              ref={userNameInput}
             />
           </div>
           <div className='grid grid-cols-1 gap-y-2'>
@@ -43,7 +42,6 @@ passwordInput.current.value = "";
               name='password'
               placeholder='Enter Password'
               className='input input-bordered w-full col-span-1 focus:outline-none'
-              ref={passwordInput}
             />
           </div>
           <button
