@@ -1,12 +1,17 @@
 import { useRef } from 'react';
+import useSignUp from '../Custom Hooks/useSignUp';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const formRef = useRef(null);
+  const signUpStatus = useSignUp();
+  const navigate = useNavigate();
+
   const formHandler = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(formData));
-    formRef.current.reset();
+    signUpStatus.mutate(Object.fromEntries(formData));
+    signUpStatus.isSuccess && formRef.current.reset();
   };
 
   return (
@@ -96,10 +101,17 @@ const SignUp = () => {
           <button
             type='button'
             className='text-left hover:underline hover:text-blue-400'
+            onClick={() => navigate('/login')}
           >
             Already Have an Account ?
           </button>
-          <button className='btn btn-block btn-small'>Sign Up</button>
+          <button className='btn btn-block btn-small'>
+            {signUpStatus.isPending ? (
+              <span className='loading loading-spinner loading-md'></span>
+            ) : (
+              'Sign Up'
+            )}
+          </button>
         </form>
       </div>
     </div>
