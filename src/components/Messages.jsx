@@ -1,7 +1,7 @@
 import Message from './Message';
 const Messages = () => {
   return (
-    <div className='ml-2 flex-1'>
+    <div className='px-5 grow overflow-y-auto'>
       <Message />
       <Message />
       <Message />

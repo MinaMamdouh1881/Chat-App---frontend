@@ -1,12 +1,26 @@
 import Header from './Header';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
+import EmptyChat from './EmptyChat';
+import { useSelector } from 'react-redux';
+
 const ChatBox = () => {
+  const { sideBar, userData } = useSelector((store) => store.main);
   return (
-    <div className='col-span-2 max-md:col-span-3 overflow-auto relative flex flex-col justify-between'>
-      <Header />
-      <Messages />
-      <MessageInput/>
+    <div
+      className={`basis-1/3 md:flex flex-col h-[100vh] md:h-[80vh] grow ${
+        sideBar ? 'hidden' : 'flex'
+      }`}
+    >
+      {userData === null ? (
+        <EmptyChat />
+      ) : (
+        <>
+          <Header />
+          <Messages />
+          <MessageInput />
+        </>
+      )}
     </div>
   );
 };

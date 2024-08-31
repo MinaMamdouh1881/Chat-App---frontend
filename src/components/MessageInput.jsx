@@ -10,7 +10,7 @@ const MessageInput = () => {
   };
   return (
     <form
-      className=' sticky bottom-0 flex flex-row'
+      className=' row-span-1  flex flex-row'
       ref={formRef}
       onSubmit={formHandler}
     >
