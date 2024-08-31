@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url, setIsLogin, setUserData } from '../Store/mainSlice';
+import { url, setIsLogin, setMyData } from '../Store/mainSlice';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -24,7 +24,7 @@ const useLogin = () => {
     },
     onSuccess: (data) => {
       localStorage.setItem('chatAppUser', JSON.stringify(data));
-      dispatch(setUserData(data));
+      dispatch(setMyData(data));
       dispatch(setIsLogin(true));
     },
   });

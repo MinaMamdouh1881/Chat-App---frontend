@@ -3,7 +3,7 @@ import { url } from '../Store/mainSlice';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { setIsLogin, setUserData } from '../Store/mainSlice';
+import { setIsLogin,  setMyData } from '../Store/mainSlice';
 
 const useSignUp = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const useSignUp = () => {
       data,
       withCredentials: true,
     });
-    return res;
+    return res.data;
   };
 
   const signUpStatus = useMutation({
@@ -29,7 +29,7 @@ const useSignUp = () => {
     },
     onSuccess: (data) => {
       localStorage.setItem('chatAppUser', JSON.stringify(data));
-      dispatch(setUserData(data));
+      dispatch(setMyData(data));
       dispatch(setIsLogin(true));
     },
   });
