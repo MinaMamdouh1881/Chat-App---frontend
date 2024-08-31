@@ -10,11 +10,11 @@ const SearchInput = () => {
   };
   return (
     <form
-      className='flex flex-row gap-x-3 max-md:justify-center max-md:pt-5'
+      className='p-5 flex-shrink-0 flex gap-x-3 border-b border-gray-400'
       onSubmit={formHandler}
       ref={formRef}
     >
-      <div>
+      <div className='w-full'>
         <input
           type='search'
           placeholder='Search here'

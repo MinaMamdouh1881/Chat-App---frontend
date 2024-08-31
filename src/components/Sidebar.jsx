@@ -1,13 +1,16 @@
 import SearchInput from './SearchInput';
 import Users from './Users';
 import LogOutButton from './LogOutButton';
+import { useSelector } from 'react-redux';
 const Sidebar = () => {
+  const { sideBar } = useSelector((store) => store.main);
   return (
-      <div
-      className='col-span-1 border-r-2 pr-2 max-md:col-span-3'
+    <div
+      className={`md:basis-1/3 md:flex flex-col h-[100vh] md:h-[80vh]  ${
+        sideBar ? 'flex' : 'hidden'
+      }`}
     >
       <SearchInput />
-      <Users />
       <Users />
       <LogOutButton />
     </div>
