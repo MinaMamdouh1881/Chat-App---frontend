@@ -1,16 +1,16 @@
-import useGetUsers from '../Custom Hooks/useGetUsers';
+import useGetConversationUsers from '../Custom Hooks/useGetConversationUsers';
 import toast from 'react-hot-toast';
 import { useDispatch,useSelector } from 'react-redux';
 import { setUserData, switchSideBar } from '../Store/mainSlice';
 const Users = () => {
   const dispatch = useDispatch();
   const {userData}=useSelector(store=>store.main)
-  const usersState = useGetUsers();
+  const usersState = useGetConversationUsers();
   if (usersState.isLoading)
     return <span className='loading loading-spinner loading-lg'></span>;
   if (usersState.isError) return toast.error('Error Happened');
   return (
-    <div className='grid grid-cols-1 gap-y-3 overflow-y-auto flex-grow'>
+    <div className='grid grid-cols-1 gap-y-3 overflow-y-auto flex-grow items-start'>
       {usersState?.data?.map((el) => {
           return (
             <div

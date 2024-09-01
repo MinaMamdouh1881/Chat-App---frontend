@@ -1,18 +1,12 @@
-import { FaSearch } from 'react-icons/fa';
-import { useRef } from 'react';
+import useSearchForUsers from '../Custom Hooks/useSearchForUsers'
 const SearchInput = () => {
-  const formRef = useRef(null);
-  const formHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(formData));
-    formRef.current.reset();
+  const searchStatus = useSearchForUsers();
+  const changeHandler = (e) => {
+    searchStatus.mutate({"query":e.target.value});
   };
   return (
     <form
       className='p-5 flex-shrink-0 flex gap-x-3 border-b border-gray-400'
-      onSubmit={formHandler}
-      ref={formRef}
     >
       <div className='w-full'>
         <input
@@ -20,12 +14,10 @@ const SearchInput = () => {
           placeholder='Search here'
           className='input input-bordered w-full rounded-full'
           name='query'
+          onChange={changeHandler}
         />
       </div>
       <div>
-        <button className='bg-cyan-400 rounded-full size-12 flex justify-center items-center duration-300 hover:bg-slate-800'>
-          <FaSearch size={20} />
-        </button>
       </div>
     </form>
   );
