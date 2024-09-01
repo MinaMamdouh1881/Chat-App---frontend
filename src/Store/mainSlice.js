@@ -9,6 +9,7 @@ const main = createSlice({
     myData: JSON.parse(localStorage.getItem('chatAppUser')),
     isLogin: JSON.parse(localStorage.getItem('chatAppUser')) ? true : false,
     sideBar: true,
+    onlineUsers: [],
   },
   reducers: {
     setUserData: (store, action) => {
@@ -23,7 +24,16 @@ const main = createSlice({
     switchSideBar: (store) => {
       store.sideBar = !store.sideBar;
     },
+    setOnlineUsers: (store, action) => {
+      store.onlineUsers = [...action.payload];
+    },
   },
 });
-export const { setUserData, setIsLogin, switchSideBar, setMyData } = main.actions;
+export const {
+  setUserData,
+  setIsLogin,
+  switchSideBar,
+  setMyData,
+  setOnlineUsers,
+} = main.actions;
 export default main.reducer;

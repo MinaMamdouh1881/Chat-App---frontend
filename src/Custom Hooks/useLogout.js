@@ -4,6 +4,8 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { setIsLogin, setMyData,setUserData } from '../Store/mainSlice';
+import { getSocket } from '../socket/socket';
+
 const useLogOut = () => {
   const dispatch = useDispatch();
 
@@ -26,6 +28,7 @@ const useLogOut = () => {
       dispatch(setMyData([]));
       dispatch(setUserData(null));
       dispatch(setIsLogin(false));
+      getSocket().close()
     },
   });
 

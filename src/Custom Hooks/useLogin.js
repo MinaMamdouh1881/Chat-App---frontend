@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { url, setIsLogin, setMyData } from '../Store/mainSlice';
+import { url, setIsLogin, setMyData, setOnlineUsers } from '../Store/mainSlice';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { initializeSocket } from '../socket/socket';
+
 const useLogin = () => {
   const dispatch = useDispatch();
 
-  const login = async (data) => { 
+  const login = async (data) => {
     if (!data.userName) throw new Error('Please Enter Your User Name');
     if (!data.password) throw new Error('Please Enter Your Password');
     const res = await axios({
@@ -24,10 +26,12 @@ const useLogin = () => {
     onError: (error) => {
       toast.error(error?.response?.data?.error || error.message);
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       localStorage.setItem('chatAppUser', JSON.stringify(data));
       dispatch(setMyData(data));
       dispatch(setIsLogin(true));
+      const socket = await initializeSocket(data._id);
+      socket.on('getOnlineUsers', (users) => dispatch(setOnlineUsers(users)));
     },
   });
 
