@@ -6,7 +6,9 @@ import { useDispatch } from 'react-redux';
 const useLogin = () => {
   const dispatch = useDispatch();
 
-  const login = async (data) => {
+  const login = async (data) => { 
+    if (!data.userName) throw new Error('Please Enter Your User Name');
+    if (!data.password) throw new Error('Please Enter Your Password');
     const res = await axios({
       url: `${url}auth/Login`,
       method: 'POST',
@@ -20,7 +22,7 @@ const useLogin = () => {
     mutationKey: 'Login',
     mutationFn: login,
     onError: (error) => {
-      toast.error(error.response.data.error);
+      toast.error(error?.response?.data?.error || error.message);
     },
     onSuccess: (data) => {
       localStorage.setItem('chatAppUser', JSON.stringify(data));

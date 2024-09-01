@@ -35,7 +35,6 @@ const Login = () => {
               name='userName'
               placeholder='Enter User Name'
               className=' input input-bordered w-full col-span-1 focus:outline-none'
-              required
             />
           </div>
           <div className='grid grid-cols-1 gap-y-2'>
@@ -48,7 +47,6 @@ const Login = () => {
               name='password'
               placeholder='Enter Password'
               className='input input-bordered w-full col-span-1 focus:outline-none'
-              required
             />
           </div>
           <button
