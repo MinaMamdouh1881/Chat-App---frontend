@@ -7,6 +7,7 @@ const SearchInput = () => {
   return (
     <form
       className='p-5 flex-shrink-0 flex gap-x-3 border-b border-gray-400'
+      onSubmit={(e)=>e.preventDefault()}
     >
       <div className='w-full'>
         <input

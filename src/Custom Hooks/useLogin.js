@@ -30,7 +30,7 @@ const useLogin = () => {
       localStorage.setItem('chatAppUser', JSON.stringify(data));
       dispatch(setMyData(data));
       dispatch(setIsLogin(true));
-      const socket = await initializeSocket(data._id);
+      const socket = initializeSocket(data._id);
       socket.on('getOnlineUsers', (users) => dispatch(setOnlineUsers(users)));
     },
   });

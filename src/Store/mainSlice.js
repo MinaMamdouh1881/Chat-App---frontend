@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { initializeSocket } from '../socket/socket';
 
 export const url = 'http://localhost:5000/api/';
+let socket;
+if (JSON.parse(localStorage.getItem('chatAppUser')))
+  socket = initializeSocket(
+    JSON.parse(localStorage.getItem('chatAppUser'))?._id
+  );
+console.log(socket);
 
 const main = createSlice({
   name: 'main',

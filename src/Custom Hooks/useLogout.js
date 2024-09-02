@@ -3,11 +3,18 @@ import { url } from '../Store/mainSlice';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { setIsLogin, setMyData,setUserData } from '../Store/mainSlice';
+import { useQueryClient } from '@tanstack/react-query';
+import {
+  setIsLogin,
+  setMyData,
+  setUserData,
+  setOnlineUsers,
+} from '../Store/mainSlice';
 import { getSocket } from '../socket/socket';
 
 const useLogOut = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   const logOut = async () => {
     const res = await axios({
@@ -26,9 +33,12 @@ const useLogOut = () => {
     onSuccess: () => {
       localStorage.removeItem('chatAppUser');
       dispatch(setMyData([]));
+      dispatch(setOnlineUsers([]));
       dispatch(setUserData(null));
       dispatch(setIsLogin(false));
-      getSocket().close()
+      queryClient.clear(['Messages']);
+      queryClient.clear(['users']);
+      getSocket().close();
     },
   });
 
