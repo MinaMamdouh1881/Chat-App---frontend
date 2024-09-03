@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initializeSocket } from '../socket/socket';
 
-export const url = 'http://localhost:5000/api/';
+export const url = 'https://chat-app-backend-inky-six.vercel.app/api/';
 let socket;
 if (JSON.parse(localStorage.getItem('chatAppUser')))
   socket = initializeSocket(
