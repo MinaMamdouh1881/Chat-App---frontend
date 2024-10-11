@@ -7,6 +7,7 @@ const useGetConversationUsers = () => {
     const res = await axios.get(`${url}users/conversation`, {
       withCredentials: true,
     });
+    console.log(res.data.data);
     return res.data.data;
   };
 
